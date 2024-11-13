@@ -32,4 +32,8 @@ export default class AuthAPIs {
     const data = response.data as ICreateSessionResponse;
     return data;
   }
+
+  static async deleteSession() {
+    await AxiosClient.delete(`${TMDB_API_BASE_URL}/${authEndpoint}/session`);
+  }
 }

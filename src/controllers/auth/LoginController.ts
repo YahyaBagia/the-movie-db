@@ -7,11 +7,16 @@ import Utils from "@/src/common/Utils";
 import AuthAPIs from "@/src/apis/auth";
 
 import { setSessionId } from "@/src/store/slices/sessionSlice";
+import {
+  dismissLoaderHud,
+  showLoaderHud,
+} from "@/src/store/slices/uiComponentsSlice";
 
 const useLoginController = () => {
   const dispatch = useDispatch();
 
   const onPressLogin = async () => {
+    dispatch(showLoaderHud());
     try {
       const requestToken = await getRequestToken();
       const redirectURL = Linking.createURL("/login/check-web-auth");
@@ -34,6 +39,8 @@ const useLoginController = () => {
         "An error occurred:",
         error instanceof Error ? error.message : error
       );
+    } finally {
+      dispatch(dismissLoaderHud());
     }
   };
 

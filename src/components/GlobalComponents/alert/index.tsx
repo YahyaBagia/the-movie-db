@@ -1,15 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Dialog, Portal, Text } from "react-native-paper";
 
-import useMaxFullWidth from "@/src/hooks/useMaxFullWidth";
-
 import { RootState } from "@/src/store";
+import useMaxFullWidth from "@/src/hooks/useMaxFullWidth";
 import {
   dismissAlert,
   selectUIComponents,
 } from "@/src/store/slices/uiComponentsSlice";
 
 const AlertView: React.FC = () => {
+  const dispatch = useDispatch();
+
   const { alertDialogData } = useSelector((state: RootState) =>
     selectUIComponents(state)
   );
@@ -51,7 +52,7 @@ const AlertView: React.FC = () => {
               <Button
                 onPress={() => {
                   onPress && onPress();
-                  dismissAlert();
+                  dispatch(dismissAlert());
                 }}
                 key={label}
               >
