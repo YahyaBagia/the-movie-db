@@ -10,6 +10,7 @@ const { TMDB_API_BASE_URL, TMDB_API_KEY, TMDB_API_TOKEN } =
 const AxiosClient = axios.create({
   baseURL: TMDB_API_BASE_URL,
   withCredentials: false,
+  timeout: 5000,
 });
 
 AxiosClient.interceptors.request.use(

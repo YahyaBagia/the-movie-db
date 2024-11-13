@@ -10,6 +10,7 @@ import { setSessionId } from "@/src/store/slices/sessionSlice";
 import {
   dismissLoaderHud,
   showLoaderHud,
+  showSnackBar,
 } from "@/src/store/slices/uiComponentsSlice";
 
 const useLoginController = () => {
@@ -35,10 +36,14 @@ const useLoginController = () => {
         console.log("Login process was cancelled by the user.");
       }
     } catch (error) {
-      console.error(
-        "An error occurred:",
-        error instanceof Error ? error.message : error
+      let message = "";
+      if (error instanceof Error) {
+        message = error.message;
+      }
+      dispatch(
+        showSnackBar({ message: `Something went wrong\nError: ${message}` })
       );
+      console.log(error);
     } finally {
       dispatch(dismissLoaderHud());
     }

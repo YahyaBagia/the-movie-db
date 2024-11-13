@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { Redirect, Slot, Tabs } from "expo-router";
+import { Icon } from "react-native-paper";
+import { Redirect, Tabs } from "expo-router";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "@/src/store";
 import AccountAPIs from "@/src/apis/account";
+import { showSnackBar } from "@/src/store/slices/uiComponentsSlice";
 import { setAccountDetails } from "@/src/store/slices/userAccountSlice";
-import { Icon } from "react-native-paper";
 
 const _layout = () => {
   const dispatch = useDispatch();
@@ -24,8 +25,15 @@ const _layout = () => {
     try {
       const accountDetails = await AccountAPIs.getAccountDetails();
       dispatch(setAccountDetails(accountDetails));
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      let message = "";
+      if (error instanceof Error) {
+        message = error.message;
+      }
+      dispatch(
+        showSnackBar({ message: `Something went wrong\nError: ${message}` })
+      );
+      console.log(error);
     }
   };
 

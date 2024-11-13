@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { Portal, Snackbar, Text, useTheme } from "react-native-paper";
 
@@ -9,6 +9,7 @@ import {
 } from "@/src/store/slices/uiComponentsSlice";
 
 const SnackBarView: React.FC = () => {
+  const dispatch = useDispatch();
   const { snackBarData } = useSelector((state: RootState) =>
     selectUIComponents(state)
   );
@@ -39,7 +40,7 @@ const SnackBarView: React.FC = () => {
     <Portal>
       <Snackbar
         visible={!!snackBarData}
-        onDismiss={dismissSnackBar}
+        onDismiss={() => dispatch(dismissSnackBar())}
         action={button}
         icon={icon}
         onIconPress={onIconPress}

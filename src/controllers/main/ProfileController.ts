@@ -4,6 +4,7 @@ import {
   dismissLoaderHud,
   showAlert,
   showLoaderHud,
+  showSnackBar,
 } from "@/src/store/slices/uiComponentsSlice";
 import AuthAPIs from "@/src/apis/auth";
 import { clearSession } from "@/src/store/slices/sessionSlice";
@@ -26,8 +27,15 @@ const useProfileController = () => {
     dispatch(showLoaderHud());
     try {
       await AuthAPIs.deleteSession();
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      let message = "";
+      if (error instanceof Error) {
+        message = error.message;
+      }
+      dispatch(
+        showSnackBar({ message: `Something went wrong\nError: ${message}` })
+      );
+      console.log(error);
     }
     dispatch(clearSession());
     dispatch(clearAccountDetails());
