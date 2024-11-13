@@ -4,12 +4,14 @@ import { router } from "expo-router";
 
 import ScreenWrapper from "@/src/components/ScreenWrapper";
 import { clearSession } from "@/src/store/slices/sessionSlice";
+import { clearAccountDetails } from "@/src/store/slices/userAccountSlice";
 
 const index = () => {
   const dispatch = useDispatch();
 
   const onPressLogout = () => {
     dispatch(clearSession());
+    dispatch(clearAccountDetails());
     router.replace("/login");
   };
   return (

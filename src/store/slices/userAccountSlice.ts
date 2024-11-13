@@ -4,11 +4,11 @@ import { IAccountDetails } from "@/src/apis/account/interfaces";
 
 // Define the initial state with IAccountDetails or undefined
 interface UserAccountState {
-  accountDetails?: IAccountDetails;
+  account_details: IAccountDetails | null;
 }
 
 const initialState: UserAccountState = {
-  accountDetails: undefined,
+  account_details: null,
 };
 
 const userAccountSlice = createSlice({
@@ -16,10 +16,10 @@ const userAccountSlice = createSlice({
   initialState,
   reducers: {
     setAccountDetails: (state, action: PayloadAction<IAccountDetails>) => {
-      state.accountDetails = action.payload;
+      state.account_details = action.payload;
     },
     clearAccountDetails: (state) => {
-      state.accountDetails = undefined;
+      state.account_details = null;
     },
   },
 });
