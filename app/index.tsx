@@ -1,10 +1,12 @@
-import { View, Text } from "react-native";
+import { Text } from "react-native-paper";
+
+import ScreenWrapper from "../src/components/ScreenWrapper";
 
 const index = () => {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>index</Text>
-    </View>
+    <ScreenWrapper>
+      <Text variant="headlineLarge">index</Text>
+    </ScreenWrapper>
   );
 };
 
