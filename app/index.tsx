@@ -1,11 +1,16 @@
-import { Text } from "react-native-paper";
+import { Button } from "react-native-paper";
 
 import ScreenWrapper from "../src/components/ScreenWrapper";
 
+import useLoginController from "../src/controllers/auth/LoginController";
+
 const index = () => {
+  const { onPressLogin } = useLoginController();
   return (
     <ScreenWrapper>
-      <Text variant="headlineLarge">index</Text>
+      <Button mode="contained" onPress={onPressLogin}>
+        Login
+      </Button>
     </ScreenWrapper>
   );
 };
