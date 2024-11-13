@@ -3,10 +3,8 @@ import * as WebBrowser from "expo-web-browser";
 import * as Linking from "expo-linking";
 import { useLocalSearchParams } from "expo-router";
 
-import AuthAPIs from "../../apis/auth";
-import Utils from "../../common/Utils";
-// import EnvironmentVariables from "../../common/EnvironmentVariables";
-// &api_key=${TMDB_API_KEY}
+import AuthAPIs from "@/src/apis/auth";
+import Utils from "@/src/common/Utils";
 
 const useLoginController = () => {
   const { request_token, approved, denied } = useLocalSearchParams<{
