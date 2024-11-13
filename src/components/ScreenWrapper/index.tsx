@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native";
 import { useTheme } from "react-native-paper";
 
 export interface IScreenWrapperProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const ScreenWrapper: React.FC<IScreenWrapperProps> = ({ children }) => {

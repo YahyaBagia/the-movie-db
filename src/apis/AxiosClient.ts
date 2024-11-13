@@ -10,4 +10,20 @@ const AxiosClient = axios.create({
   withCredentials: false,
 });
 
+AxiosClient.interceptors.request.use(
+  async (config) => {
+    config.params = {
+      ...config.params,
+      api_key: TMDB_API_KEY,
+    };
+
+    config.headers["Authorization"] = `Bearer ${TMDB_API_TOKEN}`;
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 export default AxiosClient;
