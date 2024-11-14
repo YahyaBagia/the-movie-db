@@ -26,7 +26,7 @@ const AlertView: React.FC = () => {
     <Portal>
       <Dialog
         visible={!!alertDialogData}
-        onDismiss={dismissAlert}
+        onDismiss={() => dispatch(dismissAlert())}
         dismissable={dismissable}
         style={maxFullWidthStyle}
       >

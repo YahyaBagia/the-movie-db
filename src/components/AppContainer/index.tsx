@@ -14,7 +14,7 @@ export interface AppContainerProps {
   children: React.ReactNode;
 }
 
-const WEB_MAX_WIDTH = 500;
+const WEB_MAX_WIDTH = 500 as const;
 
 const AppContainer: React.FC<AppContainerProps> = ({ children }) => {
   const { surfaceVariant, background } = useTheme().colors;
