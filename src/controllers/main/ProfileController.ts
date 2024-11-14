@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   dismissLoaderHud,
@@ -9,9 +9,14 @@ import {
 import AuthAPIs from "@/src/apis/auth";
 import { clearSession } from "@/src/store/slices/sessionSlice";
 import { clearAccountDetails } from "@/src/store/slices/userAccountSlice";
+import { RootState } from "@/src/store";
 
 const useProfileController = () => {
   const dispatch = useDispatch();
+
+  const account_details = useSelector(
+    (state: RootState) => state.userAccount.account_details
+  );
 
   const onPressLogout = () => {
     dispatch(
@@ -42,7 +47,7 @@ const useProfileController = () => {
     dispatch(dismissLoaderHud());
   };
 
-  return { onPressLogout };
+  return { account_details, onPressLogout };
 };
 
 export default useProfileController;
