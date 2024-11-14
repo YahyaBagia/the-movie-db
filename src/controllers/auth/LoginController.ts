@@ -20,7 +20,7 @@ const useLoginController = () => {
     dispatch(showLoaderHud());
     try {
       const requestToken = await getRequestToken();
-      const redirectURL = Linking.createURL("/login/check-web-auth");
+      const redirectURL = Linking.createURL("/login/verify-web-auth-status");
       const loginUrl = `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=${redirectURL}`;
 
       const result = await WebBrowser.openAuthSessionAsync(

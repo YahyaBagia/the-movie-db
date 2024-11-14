@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import * as WebBrowser from "expo-web-browser";
 
-const index = () => {
+const VerifyWebAuthStatus = () => {
   useEffect(() => {
     (async () => {
       const result = await WebBrowser.maybeCompleteAuthSession({
@@ -12,4 +12,4 @@ const index = () => {
   }, []);
   return <></>;
 };
-export default index;
+export default VerifyWebAuthStatus;
