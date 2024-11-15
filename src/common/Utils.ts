@@ -1,4 +1,5 @@
 import { Platform } from "react-native";
+import { DateTime } from "luxon";
 
 export default class Utils {
   static sleep(ms: number) {
@@ -22,6 +23,11 @@ export default class Utils {
       .join("");
 
     return initials;
+  };
+
+  static formatDate = (dateString?: string): string => {
+    if (!dateString) return "";
+    return DateTime.fromISO(dateString).toFormat("MMM d, yyyy");
   };
   //#endregion
 }

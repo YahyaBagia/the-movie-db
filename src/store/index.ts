@@ -10,6 +10,7 @@ import userAccountReducer from "./slices/userAccountSlice";
 // Configuring redux-persist
 const persistConfig = {
   key: "the-movie-db", // Key for root-level persistence
+  keyPrefix: "", // default: `persist:` (`:` isn't allowed by SecureStore)
   storage: StoreStorage, // Storage method
   whitelist: ["session", "userAccount"], // Persist only the `session` slice
 };

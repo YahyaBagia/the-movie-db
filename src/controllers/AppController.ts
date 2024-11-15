@@ -9,9 +9,9 @@ import { createMaterial3Theme } from "@pchmn/expo-material3-theme";
 import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
-  Theme,
 } from "@react-navigation/native";
-import { NavigationTheme } from "react-native-paper/lib/typescript/types";
+
+import { AppThemeColor } from "../common/Constants";
 
 const useAppController = () => {
   const colorScheme = useColorScheme();
@@ -19,7 +19,7 @@ const useAppController = () => {
 
   const theme = isDarkMode ? DarkTheme : LightTheme;
 
-  const generatedTheme = createMaterial3Theme("#00B3E5");
+  const generatedTheme = createMaterial3Theme(AppThemeColor);
   const colors = { ...generatedTheme[isDarkMode ? "dark" : "light"] };
 
   const paperTheme: MD3Theme = { ...theme, colors, dark: isDarkMode };
