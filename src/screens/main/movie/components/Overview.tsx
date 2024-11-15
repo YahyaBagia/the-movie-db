@@ -54,7 +54,9 @@ const Overview: React.FC<IOverviewProps> = (props) => {
         <Divider />
       </Surface>
       <View style={{ padding: 12 }}>
-        <Text variant="bodyLarge">"{tagline}"</Text>
+        <Text variant="bodyLarge" style={{ textAlign: "center" }}>
+          "{tagline}"
+        </Text>
         <Text variant="titleLarge">Overview</Text>
         <Text variant="bodyMedium">{overview}</Text>
         <Divider style={{ marginVertical: 8 }} />

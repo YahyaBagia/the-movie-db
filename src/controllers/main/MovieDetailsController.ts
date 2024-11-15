@@ -11,6 +11,7 @@ import { IMediaList } from "@/src/apis/interfaces";
 import { IAccountState, IMovieRated } from "@/src/apis/rating/interfaces";
 import RatingAPIs from "@/src/apis/rating";
 import { PostRatingBottomSheetRef } from "@/src/screens/main/movie/components/PostRatingBottomSheet";
+import WatchlistAPIs from "@/src/apis/watchlist";
 
 const useMovieDetailsController = () => {
   const { movie_id } = useLocalSearchParams<{ movie_id: string }>();
@@ -194,6 +195,19 @@ const useMovieDetailsController = () => {
     });
   };
 
+  const onPressToggleWatchlist = async () => {
+    if (!movie_id) return;
+
+    const isAdded = accountState?.watchlist;
+    if (isAdded) {
+      await WatchlistAPIs.removeFromWatchlist(Number(movie_id));
+    } else {
+      await WatchlistAPIs.addToWatchlist(Number(movie_id));
+    }
+
+    await fetchRating();
+  };
+
   return {
     details,
     images,
@@ -213,6 +227,7 @@ const useMovieDetailsController = () => {
     },
     openRatingBottomSheet,
     postRatingBottomSheetRef,
+    onPressToggleWatchlist,
   };
 };
 

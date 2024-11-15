@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { Surface, Text } from "react-native-paper";
+import { IconButton, Surface, Text } from "react-native-paper";
 import { Image, ImageBackground } from "expo-image";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 
@@ -12,10 +12,11 @@ export interface IHeaderProps {
   details: IMovieDetails;
   accountState: IAccountState;
   onPressRate: () => void;
+  onPressToggleWatchlist: () => void;
 }
 
 const Header: React.FC<IHeaderProps> = (props) => {
-  const { details, accountState, onPressRate } = props;
+  const { details, accountState, onPressRate, onPressToggleWatchlist } = props;
   const { poster_path, backdrop_path, vote_average } = details;
 
   const pecrcentage = vote_average * 10;
@@ -41,6 +42,15 @@ const Header: React.FC<IHeaderProps> = (props) => {
             style={{ flex: 1 }}
           />
         </Surface>
+
+        <IconButton
+          icon={accountState.watchlist ? "bookmark" : "bookmark-outline"}
+          onPress={onPressToggleWatchlist}
+          style={{ position: "absolute", top: 4, left: 4 }}
+          containerColor={AppThemeColor}
+          iconColor="white"
+          size={20}
+        />
 
         <View
           style={{
@@ -121,6 +131,22 @@ const UserRating: React.FC<IUserRatingProps> = ({
     <TouchableOpacity onPress={onPressRate} style={styles.userRatingContainer}>
       <Text style={styles.userRatingText}>{text}</Text>
     </TouchableOpacity>
+  );
+};
+
+export interface IUserWatchlistStatus {
+  accountState: IAccountState;
+  onPress: () => void;
+}
+
+const UserWatchlistStatus: React.FC<IUserWatchlistStatus> = (props) => {
+  const { accountState, onPress } = props;
+  const { watchlist } = accountState;
+  return (
+    <IconButton
+      icon={watchlist ? "bookmark" : "bookmark-outline"}
+      onPress={onPress}
+    />
   );
 };
 

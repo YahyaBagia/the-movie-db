@@ -22,6 +22,7 @@ const MovieDetailsScreen = () => {
     accountState,
     openRatingBottomSheet,
     postRatingBottomSheetRef,
+    onPressToggleWatchlist,
   } = useMovieDetailsController();
   return (
     <ScreenWrapper>
@@ -34,6 +35,7 @@ const MovieDetailsScreen = () => {
               details={details}
               accountState={accountState}
               onPressRate={openRatingBottomSheet}
+              onPressToggleWatchlist={onPressToggleWatchlist}
             />
           )}
           <Overview details={details} />
