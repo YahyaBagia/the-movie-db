@@ -2,9 +2,9 @@ import AxiosClient from "../AxiosClient";
 import { IMediaList } from "../interfaces";
 import {
   ICredits,
+  IKeywordsResponse,
   IMovieDetails,
   IMovieImages,
-  IMovieVideos,
 } from "./interfaces";
 
 export default class MovieAPIs {
@@ -39,13 +39,15 @@ export default class MovieAPIs {
     return response.data as IMediaList;
   }
 
-  public static async fetchVideos(movieId: number): Promise<IMovieVideos> {
-    const response = await AxiosClient.get(`/movie/${movieId}/videos`);
-    return response.data as IMovieVideos;
-  }
-
   public static async fetchCredits(movieId: number): Promise<ICredits> {
     const response = await AxiosClient.get(`/movie/${movieId}/credits`);
     return response.data as ICredits;
+  }
+
+  public static async fetchKeywords(
+    movieId: number
+  ): Promise<IKeywordsResponse> {
+    const response = await AxiosClient.get(`/movie/${movieId}/keywords`);
+    return response.data as IKeywordsResponse;
   }
 }

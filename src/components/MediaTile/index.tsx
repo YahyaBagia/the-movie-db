@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { View, StyleSheet } from "react-native";
 import { Icon, Surface, Text } from "react-native-paper";
 import { ImageBackground } from "expo-image";
@@ -6,6 +6,7 @@ import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { Link } from "expo-router";
 
 import { IMediaItem } from "@/src/apis/interfaces";
+
 import Utils from "@/src/common/Utils";
 import { AppThemeColor, MEDIA_IMAGE_BASE_URL } from "@/src/common/Constants";
 

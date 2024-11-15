@@ -4,6 +4,7 @@ import { useLocalSearchParams } from "expo-router";
 import MovieAPIs from "@/src/apis/movie";
 import {
   ICredits,
+  IKeywordsResponse,
   IMovieDetails,
   IMovieImages,
 } from "@/src/apis/movie/interfaces";
@@ -24,6 +25,7 @@ const useMovieDetailsController = () => {
   const [similarMovies, setSimilarMovies] = useState<IMediaList | null>(null);
   const [credits, setCredits] = useState<ICredits | null>(null);
   const [accountState, setAccountState] = useState<IAccountState | null>(null);
+  const [keywords, setKeywords] = useState<IKeywordsResponse | null>(null);
 
   const [loadingStates, setLoadingStates] = useState({
     details: false,
@@ -32,6 +34,7 @@ const useMovieDetailsController = () => {
     similarMovies: false,
     credits: false,
     accountState: false,
+    keyowords: false,
   });
 
   const [errorStates, setErrorStates] = useState({
@@ -41,6 +44,7 @@ const useMovieDetailsController = () => {
     similarMovies: null,
     credits: null,
     accountState: null,
+    keyowords: null,
   });
 
   const postRatingBottomSheetRef = useRef<PostRatingBottomSheetRef>(null);
@@ -84,6 +88,20 @@ const useMovieDetailsController = () => {
       updateErrorState("images", err.message || "Failed to fetch images");
     } finally {
       updateLoadingState("images", false);
+    }
+  }, [movie_id]);
+
+  const fetchKeywords = useCallback(async () => {
+    if (!movie_id) return;
+    updateLoadingState("keyowords", true);
+    updateErrorState("keyowords", null);
+    try {
+      const fetchedKeywords = await MovieAPIs.fetchKeywords(Number(movie_id));
+      setKeywords(fetchedKeywords);
+    } catch (err: any) {
+      updateErrorState("keyowords", err.message || "Failed to fetch keywords");
+    } finally {
+      updateLoadingState("keyowords", false);
     }
   }, [movie_id]);
 
@@ -167,6 +185,7 @@ const useMovieDetailsController = () => {
     fetchSimilarMovies();
     fetchCredits();
     fetchRating();
+    fetchKeywords();
   }, [
     fetchDetails,
     fetchImages,
@@ -174,6 +193,7 @@ const useMovieDetailsController = () => {
     fetchSimilarMovies,
     fetchCredits,
     fetchRating,
+    fetchKeywords,
   ]);
 
   const openRatingBottomSheet = () => {
@@ -215,6 +235,7 @@ const useMovieDetailsController = () => {
     similarMovies,
     credits,
     accountState,
+    keywords,
     loadingStates,
     errorStates,
     refetch: {
@@ -224,6 +245,7 @@ const useMovieDetailsController = () => {
       fetchSimilarMovies,
       fetchCredits,
       fetchRating,
+      fetchKeywords,
     },
     openRatingBottomSheet,
     postRatingBottomSheetRef,

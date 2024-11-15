@@ -1,12 +1,11 @@
-import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Card, Icon, Surface, Text } from "react-native-paper";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
 
-import { IMediaItem, MediaType } from "@/src/apis/interfaces";
 import Utils from "@/src/common/Utils";
 import { MEDIA_IMAGE_BASE_URL } from "@/src/common/Constants";
+import { IMediaItem, MediaType } from "@/src/apis/interfaces";
 
 export interface ISearchListItemProps {
   media: IMediaItem;

@@ -12,6 +12,7 @@ import Cast from "./components/Cast";
 import Images from "./components/Images";
 import MoviesList from "./components/MoviesList";
 import { Stack } from "expo-router";
+import Keywords from "./components/Keywords";
 
 const MovieDetailsScreen = () => {
   const {
@@ -20,6 +21,7 @@ const MovieDetailsScreen = () => {
     recommendations,
     similarMovies,
     credits,
+    keywords,
     accountState,
     openRatingBottomSheet,
     postRatingBottomSheetRef,
@@ -45,6 +47,7 @@ const MovieDetailsScreen = () => {
           {!!recommendations && (
             <MoviesList movies={recommendations} title="Recommendations" />
           )}
+          {!!keywords && <Keywords keywords_data={keywords} />}
           {!!similarMovies && (
             <MoviesList movies={similarMovies} title="Similar Movies" />
           )}

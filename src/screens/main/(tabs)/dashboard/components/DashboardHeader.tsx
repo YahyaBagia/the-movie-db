@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";

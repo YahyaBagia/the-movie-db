@@ -1,4 +1,3 @@
-import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Card, Icon, Surface, Text } from "react-native-paper";
 import { Image } from "expo-image";
