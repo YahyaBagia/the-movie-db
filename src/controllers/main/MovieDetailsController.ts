@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useLocalSearchParams } from "expo-router";
 
 import MovieAPIs from "@/src/apis/movie";
@@ -8,8 +8,9 @@ import {
   IMovieImages,
 } from "@/src/apis/movie/interfaces";
 import { IMediaList } from "@/src/apis/interfaces";
-import { IAccountState } from "@/src/apis/rating/interfaces";
+import { IAccountState, IMovieRated } from "@/src/apis/rating/interfaces";
 import RatingAPIs from "@/src/apis/rating";
+import { PostRatingBottomSheetRef } from "@/src/screens/main/movie/components/PostRatingBottomSheet";
 
 const useMovieDetailsController = () => {
   const { movie_id } = useLocalSearchParams<{ movie_id: string }>();
@@ -40,6 +41,8 @@ const useMovieDetailsController = () => {
     credits: null,
     accountState: null,
   });
+
+  const postRatingBottomSheetRef = useRef<PostRatingBottomSheetRef>(null);
 
   const updateLoadingState = (
     key: keyof typeof loadingStates,
@@ -143,8 +146,7 @@ const useMovieDetailsController = () => {
     updateErrorState("accountState", null);
     try {
       const fetchedAccountState = await RatingAPIs.fetchRating(
-        Number(movie_id),
-        ""
+        Number(movie_id)
       );
       setAccountState(fetchedAccountState);
     } catch (err: any) {
@@ -173,6 +175,25 @@ const useMovieDetailsController = () => {
     fetchRating,
   ]);
 
+  const openRatingBottomSheet = () => {
+    let value = 0;
+    if (accountState?.rated) {
+      value = (accountState?.rated as IMovieRated).value;
+    }
+
+    postRatingBottomSheetRef.current?.openBottomSheet({
+      value,
+      onSubmit: async (rating) => {
+        await RatingAPIs.addRating(Number(movie_id), rating);
+        await fetchRating();
+      },
+      onDelete: async () => {
+        await RatingAPIs.deleteRating(Number(movie_id));
+        await fetchRating();
+      },
+    });
+  };
+
   return {
     details,
     images,
@@ -188,7 +209,10 @@ const useMovieDetailsController = () => {
       fetchRecommendations,
       fetchSimilarMovies,
       fetchCredits,
+      fetchRating,
     },
+    openRatingBottomSheet,
+    postRatingBottomSheetRef,
   };
 };
 

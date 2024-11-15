@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Surface, Text } from "react-native-paper";
 import { Image, ImageBackground } from "expo-image";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
@@ -11,10 +11,11 @@ import { IAccountState, IMovieRated } from "@/src/apis/rating/interfaces";
 export interface IHeaderProps {
   details: IMovieDetails;
   accountState: IAccountState;
+  onPressRate: () => void;
 }
 
 const Header: React.FC<IHeaderProps> = (props) => {
-  const { details, accountState } = props;
+  const { details, accountState, onPressRate } = props;
   const { poster_path, backdrop_path, vote_average } = details;
 
   const pecrcentage = vote_average * 10;
@@ -93,7 +94,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
               User Score
             </Text>
           </View>
-          <UserRated accountState={accountState} />
+          <UserRating accountState={accountState} onPressRate={onPressRate} />
           <View style={{ alignItems: "center" }}></View>
         </View>
       </ImageBackground>
@@ -101,33 +102,39 @@ const Header: React.FC<IHeaderProps> = (props) => {
   );
 };
 
-export interface IUserRatedProps {
+export interface IUserRatingProps {
   accountState: IAccountState;
+  onPressRate: () => void;
 }
 
-const UserRated: React.FC<IUserRatedProps> = (props) => {
-  const { accountState } = props;
+const UserRating: React.FC<IUserRatingProps> = ({
+  accountState,
+  onPressRate,
+}) => {
   const { rated } = accountState;
 
-  if (!rated) return null;
-
-  const { value } = rated as IMovieRated;
+  const text = rated
+    ? `Your Vibe ${((rated as IMovieRated).value * 10).toFixed(0)}%`
+    : "What's your Vibe?";
 
   return (
-    <Text
-      variant="labelMedium"
-      style={{
-        color: "white",
-        backgroundColor: AppThemeColor,
-        paddingHorizontal: 4,
-        borderRadius: 4,
-        overflow: "hidden",
-        marginTop: 4,
-      }}
-    >
-      Your Vibe {value * 10}%
-    </Text>
+    <TouchableOpacity onPress={onPressRate} style={styles.userRatingContainer}>
+      <Text style={styles.userRatingText}>{text}</Text>
+    </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  userRatingContainer: {
+    marginTop: 4,
+  },
+  userRatingText: {
+    color: "white",
+    backgroundColor: AppThemeColor,
+    paddingHorizontal: 4,
+    borderRadius: 4,
+    overflow: "hidden",
+  },
+});
 
 export default Header;

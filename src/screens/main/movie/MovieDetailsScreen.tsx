@@ -1,5 +1,7 @@
 import { ScrollView } from "react-native";
 
+import PostRatingBottomSheet from "./components/PostRatingBottomSheet";
+
 import useMovieDetailsController from "@/src/controllers/main/MovieDetailsController";
 import ScreenWrapper from "@/src/components/ScreenWrapper";
 
@@ -18,6 +20,8 @@ const MovieDetailsScreen = () => {
     similarMovies,
     credits,
     accountState,
+    openRatingBottomSheet,
+    postRatingBottomSheetRef,
   } = useMovieDetailsController();
   return (
     <ScreenWrapper>
@@ -26,7 +30,11 @@ const MovieDetailsScreen = () => {
       ) : (
         <ScrollView>
           {!!details && !!accountState && (
-            <Header details={details} accountState={accountState} />
+            <Header
+              details={details}
+              accountState={accountState}
+              onPressRate={openRatingBottomSheet}
+            />
           )}
           <Overview details={details} />
           {!!credits && <Cast cast={credits?.cast} />}
@@ -39,6 +47,7 @@ const MovieDetailsScreen = () => {
           )}
         </ScrollView>
       )}
+      <PostRatingBottomSheet ref={postRatingBottomSheetRef} />
     </ScreenWrapper>
   );
 };
