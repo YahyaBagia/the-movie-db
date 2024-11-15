@@ -3,6 +3,7 @@ import { Divider, Surface, Text } from "react-native-paper";
 
 import { IMovieDetails } from "@/src/apis/movie/interfaces";
 import Utils from "@/src/common/Utils";
+import { Link } from "expo-router";
 
 export interface IOverviewProps {
   details: IMovieDetails;
@@ -11,6 +12,7 @@ export interface IOverviewProps {
 const Overview: React.FC<IOverviewProps> = (props) => {
   const { details } = props;
   const {
+    id,
     tagline,
     overview,
     production_companies,
@@ -70,6 +72,17 @@ const Overview: React.FC<IOverviewProps> = (props) => {
           ))}
         </View>
       </View>
+      <Surface style={{ marginVertical: 12 }} elevation={2} mode="flat">
+        <Link href={`/main/movie/${id}/reviews`} asChild={Utils.isWeb()}>
+          <View>
+            <Divider />
+            <Text variant="titleLarge" style={{ textAlign: "center" }}>
+              Reviews {"->"}
+            </Text>
+            <Divider />
+          </View>
+        </Link>
+      </Surface>
     </View>
   );
 };

@@ -31,6 +31,7 @@ export default class Utils {
     if (!dateString) return "";
     return DateTime.fromISO(dateString).toFormat("MMM d, yyyy");
   };
+
   //#endregion
 
   static formatMinutesToHours = (minutes: number): string => {

@@ -4,6 +4,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import { ImageBackground } from "expo-image";
 
 import Spacer from "@/src/components/Spacer";
+import { Link } from "expo-router";
+import Utils from "@/src/common/Utils";
 
 const DashboardHeader = () => {
   return (
@@ -22,34 +24,40 @@ const DashboardHeader = () => {
         </Text>
 
         <Spacer />
-        <View
-          style={{
-            flexDirection: "row",
-            backgroundColor: "white",
-            borderRadius: 20,
-            height: 40,
-          }}
-        >
+        <Link href="/main/search" asChild={Utils.isWeb()}>
           <View
-            style={{ flex: 1, justifyContent: "center", paddingHorizontal: 12 }}
-          >
-            <Text style={{ color: "#cbcbcb" }}>Search...</Text>
-          </View>
-          <LinearGradient
-            colors={["rgba(30, 213, 169, 1)", "rgba(1, 180, 228, 1)"]}
-            start={{ x: 0, y: 0.75 }}
-            end={{ x: 1, y: 0.25 }}
             style={{
-              justifyContent: "center",
-              alignItems: "center",
-              borderTopRightRadius: 20,
-              borderBottomRightRadius: 20,
-              paddingHorizontal: 22,
+              flexDirection: "row",
+              backgroundColor: "white",
+              borderRadius: 20,
+              height: 40,
             }}
           >
-            <Text style={{ color: "white" }}>Search</Text>
-          </LinearGradient>
-        </View>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                paddingHorizontal: 12,
+              }}
+            >
+              <Text style={{ color: "#cbcbcb" }}>Search...</Text>
+            </View>
+            <LinearGradient
+              colors={["rgba(30, 213, 169, 1)", "rgba(1, 180, 228, 1)"]}
+              start={{ x: 0, y: 0.75 }}
+              end={{ x: 1, y: 0.25 }}
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                borderTopRightRadius: 20,
+                borderBottomRightRadius: 20,
+                paddingHorizontal: 22,
+              }}
+            >
+              <Text style={{ color: "white" }}>Search</Text>
+            </LinearGradient>
+          </View>
+        </Link>
         <Spacer />
       </View>
     </ImageBackground>

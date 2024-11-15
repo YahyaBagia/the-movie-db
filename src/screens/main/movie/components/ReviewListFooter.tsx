@@ -1,11 +1,11 @@
 import { View } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
 
-export interface IWatchListFooterProps {
+export interface IReviewListFooterProps {
   hasMore: boolean;
 }
 
-const WatchListFooter: React.FC<IWatchListFooterProps> = (props) => {
+const ReviewListFooter: React.FC<IReviewListFooterProps> = (props) => {
   const { hasMore } = props;
   return (
     <View
@@ -20,4 +20,4 @@ const WatchListFooter: React.FC<IWatchListFooterProps> = (props) => {
   );
 };
 
-export default WatchListFooter;
+export default ReviewListFooter;

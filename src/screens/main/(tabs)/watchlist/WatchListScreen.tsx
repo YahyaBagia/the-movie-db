@@ -1,9 +1,11 @@
 import { FlatList } from "react-native";
 import { ActivityIndicator } from "react-native-paper";
 
-import WatchListItem from "./components/WatchListItem";
 import ScreenWrapper from "@/src/components/ScreenWrapper";
+
+import WatchListItem from "./components/WatchListItem";
 import WatchListFooter from "./components/WatchListFooter";
+
 import { useWatchlistController } from "@/src/controllers/main/WatchlistController";
 
 const WatchListScreen = () => {
@@ -23,9 +25,7 @@ const WatchListScreen = () => {
           renderItem={({ item }) => (
             <WatchListItem media={item} media_type={"movie"} />
           )}
-          ListFooterComponent={() => (
-            <WatchListFooter loading={loading} hasMore={hasMore} />
-          )}
+          ListFooterComponent={() => <WatchListFooter hasMore={hasMore} />}
           onEndReached={fetchNextPage}
           onEndReachedThreshold={0.5}
         />

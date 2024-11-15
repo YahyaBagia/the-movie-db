@@ -50,9 +50,7 @@ const SearchScreen = () => {
           renderItem={({ item }) => (
             <SearchListItem media={item} media_type={mediaType} />
           )}
-          ListFooterComponent={() => (
-            <SearchListFooter loading={loading} hasMore={hasMore} />
-          )}
+          ListFooterComponent={() => <SearchListFooter hasMore={hasMore} />}
           onEndReached={fetchNextPage}
           onEndReachedThreshold={0.5}
         />
