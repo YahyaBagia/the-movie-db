@@ -1,8 +1,8 @@
-import { View } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 
-import { TimeFrame } from "@/src/apis/trending/interfaces";
-
+import { TimeFrame } from "@/src/apis/interfaces";
 import SegmentedControl from "@/src/components/SegmentedControl";
 
 export interface ISectionHeaderProps {
@@ -16,14 +16,17 @@ const TimeFrameSelectionValues = [
   { value: "week", label: "This Week" },
 ];
 
-const SectionHeader: React.FC<ISectionHeaderProps> = (props) => {
-  const { title, timeFrame, onChangeTimeFrame } = props;
+const SectionHeader: React.FC<ISectionHeaderProps> = ({
+  title,
+  timeFrame,
+  onChangeTimeFrame,
+}) => {
   return (
-    <View style={{ paddingHorizontal: 12, marginVertical: 12 }}>
-      <View style={{ flexDirection: "row" }}>
+    <View style={styles.container}>
+      <View style={styles.header}>
         <Text variant="titleLarge">{title}</Text>
-        <View style={{ flex: 1 }} />
-        <View style={{ width: 190, alignItems: "flex-end" }}>
+        <View style={styles.spacer} />
+        <View style={styles.segmentControl}>
           <SegmentedControl
             value={timeFrame}
             values={TimeFrameSelectionValues}
@@ -34,5 +37,22 @@ const SectionHeader: React.FC<ISectionHeaderProps> = (props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 12,
+    marginVertical: 12,
+  },
+  header: {
+    flexDirection: "row",
+  },
+  spacer: {
+    flex: 1,
+  },
+  segmentControl: {
+    width: 190,
+    alignItems: "flex-end",
+  },
+});
 
 export default SectionHeader;

@@ -17,28 +17,25 @@ const LayoutMain = () => {
 
   useEffect(() => {
     if (session_id) {
-      getAccountDetails();
+      fetchAccountDetails();
     }
   }, [session_id]);
 
-  const getAccountDetails = async () => {
+  const fetchAccountDetails = async () => {
     try {
       const accountDetails = await AccountAPIs.getAccountDetails();
       dispatch(setAccountDetails(accountDetails));
     } catch (error) {
-      let message = "";
-      if (error instanceof Error) {
-        message = error.message;
-      }
+      const message = error instanceof Error ? error.message : "Unknown error";
       dispatch(
         showSnackBar({ message: `Something went wrong\nError: ${message}` })
       );
-      console.log(error);
+      console.error(error);
     }
   };
 
   if (!session_id) {
-    return <Redirect href={"/login"} />;
+    return <Redirect href="/login" />;
   }
 
   return (

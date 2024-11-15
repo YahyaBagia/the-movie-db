@@ -1,16 +1,14 @@
-import { View } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 import { ActivityIndicator, Text } from "react-native-paper";
 
 export interface ISearchListFooterProps {
   hasMore: boolean;
 }
 
-const SearchListFooter: React.FC<ISearchListFooterProps> = (props) => {
-  const { hasMore } = props;
+const SearchListFooter: React.FC<ISearchListFooterProps> = ({ hasMore }) => {
   return (
-    <View
-      style={{ height: 90, justifyContent: "center", alignItems: "center" }}
-    >
+    <View style={styles.container}>
       {hasMore ? (
         <ActivityIndicator size="large" />
       ) : (
@@ -19,5 +17,13 @@ const SearchListFooter: React.FC<ISearchListFooterProps> = (props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    height: 90,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default SearchListFooter;

@@ -1,4 +1,6 @@
-import { Text, useTheme } from "react-native-paper";
+import { useMemo } from "react";
+import { StyleSheet } from "react-native";
+import { useTheme } from "react-native-paper";
 import SegmentedControl2 from "react-native-segmented-control-2";
 
 export interface ISegmentedControlButton {
@@ -12,39 +14,56 @@ export interface ISegmentedControlProps {
   onValueChange: (value: string) => void;
 }
 
-const SegmentedControl: React.FC<ISegmentedControlProps> = (props) => {
-  const { value, values, onValueChange } = props;
+const SegmentedControl: React.FC<ISegmentedControlProps> = ({
+  value,
+  values,
+  onValueChange,
+}) => {
+  const themeColors = useTheme().colors;
+
+  // Memoized values for selected index and tabs
+  const selectedIndex = useMemo(
+    () => values.findIndex(({ value: v }) => v === value),
+    [values, value]
+  );
+
+  const tabs = useMemo(() => values.map(({ label }) => label), [values]);
 
   const onChangeIndex = (index: number) => {
-    const value = values[index].value;
-    onValueChange(value);
+    const selectedValue = values[index]?.value;
+    if (selectedValue) {
+      onValueChange(selectedValue);
+    }
   };
-
-  const selectedIndex = values.findIndex(({ value: v }) => v === value);
-
-  const {
-    primary: primaryColor,
-    surfaceVariant: backgroundColor,
-    onBackground: textColor,
-    outline: borderColor,
-  } = useTheme().colors;
 
   return (
     <SegmentedControl2
       value={selectedIndex}
-      tabs={values.map(({ label }) => label)}
-      style={{
-        backgroundColor: "transparent",
-        borderRadius: 20,
-        borderWidth: 1,
-        borderColor: borderColor,
-      }}
-      selectedTabStyle={{ borderRadius: 20, backgroundColor }}
-      textStyle={{ color: textColor, fontWeight: "bold" }}
-      activeTextColor={primaryColor}
+      tabs={tabs}
+      style={[styles.segmentedControl, { borderColor: themeColors.outline }]}
+      selectedTabStyle={[
+        styles.selectedTab,
+        { backgroundColor: themeColors.surfaceVariant },
+      ]}
+      textStyle={[styles.text, { color: themeColors.onBackground }]}
+      activeTextColor={themeColors.primary}
       onChange={onChangeIndex}
     />
   );
 };
+
+const styles = StyleSheet.create({
+  segmentedControl: {
+    backgroundColor: "transparent",
+    borderRadius: 20,
+    borderWidth: 1,
+  },
+  selectedTab: {
+    borderRadius: 20,
+  },
+  text: {
+    fontWeight: "bold",
+  },
+});
 
 export default SegmentedControl;

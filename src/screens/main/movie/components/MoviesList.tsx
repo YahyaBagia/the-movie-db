@@ -1,9 +1,9 @@
-import { FlatList, View } from "react-native";
+import { FlatList, View, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 
-import { IMediaList } from "@/src/apis/interfaces";
-import MediaTile from "@/src/components/MediaTile";
 import Spacer from "@/src/components/Spacer";
+import MediaTile from "@/src/components/MediaTile";
+import { IMediaList } from "@/src/apis/interfaces";
 
 export interface IMoviesListProps {
   title: string;
@@ -13,9 +13,10 @@ export interface IMoviesListProps {
 const MoviesList: React.FC<IMoviesListProps> = (props) => {
   const { movies, title } = props;
   const { results } = movies;
+
   return (
     <View>
-      <Text variant="titleLarge" style={{ marginHorizontal: 12 }}>
+      <Text variant="titleLarge" style={styles.title}>
         {title}
       </Text>
       <FlatList
@@ -24,10 +25,19 @@ const MoviesList: React.FC<IMoviesListProps> = (props) => {
         data={results}
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: 12 }}
+        contentContainerStyle={styles.flatListContainer}
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    marginHorizontal: 12,
+  },
+  flatListContainer: {
+    paddingHorizontal: 12,
+  },
+});
 
 export default MoviesList;

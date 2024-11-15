@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FlatList, View } from "react-native";
-import { Card, Text } from "react-native-paper";
+import { FlatList, View, StyleSheet } from "react-native";
+import { Text } from "react-native-paper";
 import { Image } from "expo-image";
 
 import { MEDIA_IMAGE_BASE_URL } from "@/src/common/Constants";
@@ -11,25 +11,23 @@ export interface IImageProps {
   images: IMovieImages;
 }
 
-const Images: React.FC<IImageProps> = (props) => {
-  const { images } = props;
-
+const Images: React.FC<IImageProps> = ({ images }) => {
   const [selectedImageType, setSelectedImageType] = useState<
     "posters" | "logos" | "backdrops"
   >("posters");
 
+  const imageTypeLabels = {
+    posters: "Posters",
+    logos: "Logos",
+    backdrops: "Backdrops",
+  };
+
   return (
-    <View style={{ padding: 12 }}>
-      <View style={{ flexDirection: "row" }}>
-        <Text variant="titleLarge">
-          {selectedImageType === "posters"
-            ? "Posters"
-            : selectedImageType === "logos"
-            ? "Logos"
-            : "Backdrops"}
-        </Text>
-        <View style={{ flex: 1 }} />
-        <View style={{ width: 290, alignItems: "flex-end" }}>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text variant="titleLarge">{imageTypeLabels[selectedImageType]}</Text>
+        <View style={styles.spacer} />
+        <View style={styles.segmentedControlWrapper}>
           <SegmentedControl
             value={selectedImageType}
             values={[
@@ -41,6 +39,7 @@ const Images: React.FC<IImageProps> = (props) => {
           />
         </View>
       </View>
+
       <FlatList
         data={images[selectedImageType]}
         renderItem={({ item }) => (
@@ -55,7 +54,7 @@ const Images: React.FC<IImageProps> = (props) => {
             }
           />
         )}
-        ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
         horizontal
         showsHorizontalScrollIndicator={false}
       />
@@ -68,26 +67,40 @@ export interface IImgProps {
   imageWidth: number;
 }
 
-const Img: React.FC<IImgProps> = (props) => {
-  const { image, imageWidth = 120 } = props;
+const Img: React.FC<IImgProps> = ({ image, imageWidth }) => {
   const { file_path, aspect_ratio } = image;
-
   const imageHeight = imageWidth / aspect_ratio;
 
   return (
-    // <Card style={{ overflow: "hidden", marginVertical: 4 }}>
     <Image
       source={{ uri: `${MEDIA_IMAGE_BASE_URL}/${file_path}` }}
-      style={{
-        width: imageWidth,
-        height: imageHeight,
-        overflow: "hidden",
-        marginVertical: 4,
-        borderRadius: 8,
-      }}
+      style={[styles.image, { width: imageWidth, height: imageHeight }]}
     />
-    // </Card>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 12,
+  },
+  header: {
+    flexDirection: "row",
+  },
+  spacer: {
+    flex: 1,
+  },
+  segmentedControlWrapper: {
+    width: 290,
+    alignItems: "flex-end",
+  },
+  separator: {
+    width: 12,
+  },
+  image: {
+    overflow: "hidden",
+    marginVertical: 4,
+    borderRadius: 8,
+  },
+});
 
 export default Images;

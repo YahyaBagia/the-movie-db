@@ -5,7 +5,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { View, TextInput as RNTextInput } from "react-native";
+import { View, TextInput as RNTextInput, StyleSheet } from "react-native";
 import { Button, IconButton, Portal, Text, useTheme } from "react-native-paper";
 import {
   BottomSheetBackdrop,
@@ -102,7 +102,7 @@ const PostRatingBottomSheet: React.ForwardRefRenderFunction<
           enableContentPanningGesture={false}
           enableDismissOnClose
           handleComponent={null}
-          backgroundStyle={{ backgroundColor, borderRadius: 28 }}
+          backgroundStyle={[styles.bottomSheet, { backgroundColor }]}
           backdropComponent={(props) => (
             <BottomSheetBackdrop
               {...props}
@@ -114,22 +114,13 @@ const PostRatingBottomSheet: React.ForwardRefRenderFunction<
           style={[maxWidthStyle]}
         >
           <BottomSheetView>
-            <View
-              style={{
-                height: 50,
-                marginTop: 8,
-                justifyContent: "space-between",
-                flexDirection: "row",
-                paddingLeft: 24,
-                paddingRight: 12,
-                alignItems: "center",
-              }}
-            >
+            <View style={styles.header}>
               <Text variant="bodyLarge">Rating</Text>
               <IconButton icon={"close"} onPress={closeModal} />
             </View>
-            <View style={{ marginHorizontal: 35, marginTop: 12 }}>
-              <Text variant="titleLarge" style={{ textAlign: "center" }}>
+
+            <View style={styles.body}>
+              <Text variant="titleLarge" style={styles.ratingTitle}>
                 {ratingTitle}
               </Text>
               <Spacer />
@@ -140,23 +131,23 @@ const PostRatingBottomSheet: React.ForwardRefRenderFunction<
                 onFinishRating={setRating}
                 imageSize={30}
               />
-              <View style={{ height: 8 }} />
+              <View style={styles.spacing} />
               {value > 0 && (
                 <>
                   <Text
                     variant="titleMedium"
-                    style={{ textAlign: "center" }}
+                    style={styles.deleteRating}
                     onPress={onPressDelete}
                   >
                     Delete Rating
                   </Text>
-                  <View style={{ height: 8 }} />
+                  <View style={styles.spacing} />
                 </>
               )}
               <Button mode="contained" onPress={onPressSubmit}>
                 Submit
               </Button>
-              <View style={{ height: 28 }} />
+              <View style={styles.spacingLarge} />
             </View>
           </BottomSheetView>
         </BottomSheetModal>
@@ -164,5 +155,36 @@ const PostRatingBottomSheet: React.ForwardRefRenderFunction<
     </Portal>
   );
 };
+
+const styles = StyleSheet.create({
+  bottomSheet: {
+    borderRadius: 28,
+  },
+  header: {
+    height: 50,
+    marginTop: 8,
+    justifyContent: "space-between",
+    flexDirection: "row",
+    paddingLeft: 24,
+    paddingRight: 12,
+    alignItems: "center",
+  },
+  body: {
+    marginHorizontal: 35,
+    marginTop: 12,
+  },
+  ratingTitle: {
+    textAlign: "center",
+  },
+  spacing: {
+    height: 8,
+  },
+  deleteRating: {
+    textAlign: "center",
+  },
+  spacingLarge: {
+    height: 28,
+  },
+});
 
 export default forwardRef(PostRatingBottomSheet);

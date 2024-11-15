@@ -1,3 +1,4 @@
+import { StyleSheet } from "react-native";
 import { Card, Divider, Text } from "react-native-paper";
 
 import Utils from "@/src/common/Utils";
@@ -7,19 +8,37 @@ export interface IReviewListItemProps {
   review: IReview;
 }
 
-const ReviewListItem: React.FC<IReviewListItemProps> = (props) => {
-  const { review } = props;
+const ReviewListItem: React.FC<IReviewListItemProps> = ({ review }) => {
   const { author, content, created_at } = review;
   return (
-    <Card style={{ margin: 4, padding: 8 }}>
-      <Text variant="titleLarge" style={{ fontWeight: "bold" }}>
+    <Card style={styles.card}>
+      <Text variant="titleLarge" style={styles.author}>
         {author}
-        <Text variant="bodySmall"> ({Utils.formatDate(created_at)})</Text>
+        <Text variant="bodySmall" style={styles.date}>
+          {" "}
+          ({Utils.formatDate(created_at)})
+        </Text>
       </Text>
-      <Divider style={{ marginVertical: 8 }} />
+      <Divider style={styles.divider} />
       <Text variant="bodyLarge">{content}</Text>
     </Card>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    margin: 4,
+    padding: 8,
+  },
+  author: {
+    fontWeight: "bold",
+  },
+  date: {
+    fontStyle: "italic",
+  },
+  divider: {
+    marginVertical: 8,
+  },
+});
 
 export default ReviewListItem;
