@@ -1,1 +1,1 @@
-export { default } from "@/src/screens/main/LayoutMain";
+export { default } from "@/src/screens/main/LayoutStack";

@@ -7,6 +7,7 @@ import { IMediaItem } from "@/src/apis/interfaces";
 
 import Utils from "@/src/common/Utils";
 import { AppThemeColor, MEDIA_IMAGE_BASE_URL } from "@/src/common/Constants";
+import { Link } from "expo-router";
 
 export interface IMediaTileProps {
   media: IMediaItem;
@@ -16,6 +17,7 @@ const MediaTile: React.FC<IMediaTileProps> = (props) => {
   const { media } = props;
 
   const {
+    id,
     title,
     original_name,
     poster_path,
@@ -32,68 +34,70 @@ const MediaTile: React.FC<IMediaTileProps> = (props) => {
   const pecrcentage = vote_average * 10;
 
   return (
-    <View style={{ width: 150, height: 290 }}>
-      <ImageBackground
-        source={{ uri: MEDIA_IMAGE_BASE_URL + poster_path }}
-        style={{
-          height: 225,
-          justifyContent: "flex-end",
-          alignItems: "flex-end",
-        }}
-        imageStyle={{ borderRadius: 12 }}
-      >
-        {!poster_path && (
-          <Surface
-            style={{
-              width: 150,
-              height: 225,
-              justifyContent: "center",
-              alignItems: "center",
-              position: "absolute",
-              borderRadius: 12,
-            }}
-            elevation={5}
-            mode="flat"
-          >
-            <Icon source={"image-broken-variant"} size={48} />
-          </Surface>
-        )}
-        <AnimatedCircularProgress
-          size={38}
-          width={3}
-          fill={pecrcentage}
-          tintColor={AppThemeColor}
-          backgroundColor={"transparent"}
+    <Link href={`/main/${media_type}/${id}`}>
+      <View style={{ width: 150, height: 290 }}>
+        <ImageBackground
+          source={{ uri: MEDIA_IMAGE_BASE_URL + poster_path }}
           style={{
-            backgroundColor: "black",
-            borderRadius: 20,
-            borderColor: "black",
-            borderWidth: 2,
+            height: 225,
+            justifyContent: "flex-end",
+            alignItems: "flex-end",
           }}
+          imageStyle={{ borderRadius: 12 }}
         >
-          {(fill) => (
-            <Text style={{ color: "white", fontWeight: "bold" }}>
-              {fill.toFixed(0)}
-              <Text
-                style={{
-                  fontSize: 9,
-                  color: "white",
-                  fontWeight: "bold",
-                }}
-              >
-                %
-              </Text>
-            </Text>
+          {!poster_path && (
+            <Surface
+              style={{
+                width: 150,
+                height: 225,
+                justifyContent: "center",
+                alignItems: "center",
+                position: "absolute",
+                borderRadius: 12,
+              }}
+              elevation={5}
+              mode="flat"
+            >
+              <Icon source={"image-broken-variant"} size={48} />
+            </Surface>
           )}
-        </AnimatedCircularProgress>
-      </ImageBackground>
-      <Text style={{ fontSize: 16, fontWeight: "bold" }} numberOfLines={2}>
-        {mediaTitle}
-      </Text>
-      <Text style={{ fontSize: 12, marginTop: 8 }}>
-        {Utils.formatDate(mediaReleaseDate)}
-      </Text>
-    </View>
+          <AnimatedCircularProgress
+            size={38}
+            width={3}
+            fill={pecrcentage}
+            tintColor={AppThemeColor}
+            backgroundColor={"transparent"}
+            style={{
+              backgroundColor: "black",
+              borderRadius: 20,
+              borderColor: "black",
+              borderWidth: 2,
+            }}
+          >
+            {(fill) => (
+              <Text style={{ color: "white", fontWeight: "bold" }}>
+                {fill.toFixed(0)}
+                <Text
+                  style={{
+                    fontSize: 9,
+                    color: "white",
+                    fontWeight: "bold",
+                  }}
+                >
+                  %
+                </Text>
+              </Text>
+            )}
+          </AnimatedCircularProgress>
+        </ImageBackground>
+        <Text style={{ fontSize: 16, fontWeight: "bold" }} numberOfLines={2}>
+          {mediaTitle}
+        </Text>
+        <Text style={{ fontSize: 12, marginTop: 8 }}>
+          {Utils.formatDate(mediaReleaseDate)}
+        </Text>
+      </View>
+    </Link>
   );
 };
 
