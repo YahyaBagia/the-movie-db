@@ -8,6 +8,8 @@ import {
   IMovieImages,
 } from "@/src/apis/movie/interfaces";
 import { IMediaList } from "@/src/apis/interfaces";
+import { IAccountState } from "@/src/apis/rating/interfaces";
+import RatingAPIs from "@/src/apis/rating";
 
 const useMovieDetailsController = () => {
   const { movie_id } = useLocalSearchParams<{ movie_id: string }>();
@@ -19,6 +21,7 @@ const useMovieDetailsController = () => {
   );
   const [similarMovies, setSimilarMovies] = useState<IMediaList | null>(null);
   const [credits, setCredits] = useState<ICredits | null>(null);
+  const [accountState, setAccountState] = useState<IAccountState | null>(null);
 
   const [loadingStates, setLoadingStates] = useState({
     details: false,
@@ -26,6 +29,7 @@ const useMovieDetailsController = () => {
     recommendations: false,
     similarMovies: false,
     credits: false,
+    accountState: false,
   });
 
   const [errorStates, setErrorStates] = useState({
@@ -34,6 +38,7 @@ const useMovieDetailsController = () => {
     recommendations: null,
     similarMovies: null,
     credits: null,
+    accountState: null,
   });
 
   const updateLoadingState = (
@@ -132,18 +137,40 @@ const useMovieDetailsController = () => {
     }
   }, [movie_id]);
 
+  const fetchRating = useCallback(async () => {
+    if (!movie_id) return;
+    updateLoadingState("accountState", true);
+    updateErrorState("accountState", null);
+    try {
+      const fetchedAccountState = await RatingAPIs.fetchRating(
+        Number(movie_id),
+        ""
+      );
+      setAccountState(fetchedAccountState);
+    } catch (err: any) {
+      updateErrorState(
+        "accountState",
+        err.message || "Failed to fetch account state"
+      );
+    } finally {
+      updateLoadingState("accountState", false);
+    }
+  }, [movie_id]);
+
   useEffect(() => {
     fetchDetails();
     fetchImages();
     fetchRecommendations();
     fetchSimilarMovies();
     fetchCredits();
+    fetchRating();
   }, [
     fetchDetails,
     fetchImages,
     fetchRecommendations,
     fetchSimilarMovies,
     fetchCredits,
+    fetchRating,
   ]);
 
   return {
@@ -152,6 +179,7 @@ const useMovieDetailsController = () => {
     recommendations,
     similarMovies,
     credits,
+    accountState,
     loadingStates,
     errorStates,
     refetch: {

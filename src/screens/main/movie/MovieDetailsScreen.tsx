@@ -11,15 +11,23 @@ import Images from "./components/Images";
 import MoviesList from "./components/MoviesList";
 
 const MovieDetailsScreen = () => {
-  const { details, images, recommendations, similarMovies, credits } =
-    useMovieDetailsController();
+  const {
+    details,
+    images,
+    recommendations,
+    similarMovies,
+    credits,
+    accountState,
+  } = useMovieDetailsController();
   return (
     <ScreenWrapper>
       {!details ? (
         <Loading />
       ) : (
         <ScrollView>
-          <Header details={details} />
+          {!!details && !!accountState && (
+            <Header details={details} accountState={accountState} />
+          )}
           <Overview details={details} />
           {!!credits && <Cast cast={credits?.cast} />}
           {!!images && <Images images={images} />}
