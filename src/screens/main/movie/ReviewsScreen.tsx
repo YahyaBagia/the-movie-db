@@ -7,6 +7,7 @@ import ReviewListFooter from "./components/ReviewListFooter";
 import ScreenWrapper from "@/src/components/ScreenWrapper";
 
 import useReviewsController from "@/src/controllers/main/ReviewsController";
+import { Stack } from "expo-router";
 
 const ReviewsScreen = () => {
   const { reviews, loading, hasMore, fetchNextPage } = useReviewsController();
@@ -27,6 +28,7 @@ const ReviewsScreen = () => {
           onEndReachedThreshold={0.5}
         />
       )}
+      <Stack.Screen options={{ title: "Reviews" }} />
     </ScreenWrapper>
   );
 };

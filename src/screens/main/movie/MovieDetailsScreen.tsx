@@ -11,6 +11,7 @@ import Overview from "./components/Overview";
 import Cast from "./components/Cast";
 import Images from "./components/Images";
 import MoviesList from "./components/MoviesList";
+import { Stack } from "expo-router";
 
 const MovieDetailsScreen = () => {
   const {
@@ -50,6 +51,7 @@ const MovieDetailsScreen = () => {
         </ScrollView>
       )}
       <PostRatingBottomSheet ref={postRatingBottomSheetRef} />
+      <Stack.Screen options={{ title: details?.title || "Movie Details" }} />
     </ScreenWrapper>
   );
 };
