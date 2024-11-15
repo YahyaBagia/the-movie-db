@@ -1,13 +1,12 @@
 import { View } from "react-native";
-import { Text } from "react-native-paper";
+import { Icon, Surface, Text } from "react-native-paper";
 import { ImageBackground } from "expo-image";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 
-import { IMediaItem } from "@/src/apis/trending/interfaces";
-import { AppThemeColor } from "@/src/common/Constants";
-import Utils from "@/src/common/Utils";
+import { IMediaItem } from "@/src/apis/interfaces";
 
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
+import Utils from "@/src/common/Utils";
+import { AppThemeColor, MEDIA_IMAGE_BASE_URL } from "@/src/common/Constants";
 
 export interface IMediaTileProps {
   media: IMediaItem;
@@ -35,7 +34,7 @@ const MediaTile: React.FC<IMediaTileProps> = (props) => {
   return (
     <View style={{ width: 150, height: 290 }}>
       <ImageBackground
-        source={{ uri: IMAGE_BASE_URL + poster_path }}
+        source={{ uri: MEDIA_IMAGE_BASE_URL + poster_path }}
         style={{
           height: 225,
           justifyContent: "flex-end",
@@ -43,6 +42,22 @@ const MediaTile: React.FC<IMediaTileProps> = (props) => {
         }}
         imageStyle={{ borderRadius: 12 }}
       >
+        {!poster_path && (
+          <Surface
+            style={{
+              width: 150,
+              height: 225,
+              justifyContent: "center",
+              alignItems: "center",
+              position: "absolute",
+              borderRadius: 12,
+            }}
+            elevation={5}
+            mode="flat"
+          >
+            <Icon source={"image-broken-variant"} size={48} />
+          </Surface>
+        )}
         <AnimatedCircularProgress
           size={38}
           width={3}

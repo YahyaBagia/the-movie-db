@@ -1,5 +1,5 @@
 import AxiosClient from "../AxiosClient";
-import { IMediaList, MediaType, TimeFrame } from "./interfaces";
+import { IMediaList, MediaType, TimeFrame } from "../interfaces";
 
 export default class TrendingAPIs {
   public static async getTrending(
