@@ -1,8 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 
 import TrendingAPIs from "@/src/apis/trending";
-import { IMediaItem } from "@/src/apis/trending/interfaces";
-import Utils from "@/src/common/Utils";
+import { IMediaItem } from "@/src/apis/interfaces";
 
 interface UseDashboardControllerResult {
   trendingMedia: IMediaItem[];
