@@ -1,6 +1,7 @@
 import { Avatar } from "react-native-paper";
 
 import Utils from "@/src/common/Utils";
+import { PROFILE_IMAGE_BASE_URL } from "@/src/common/Constants";
 import { IAccountDetails } from "@/src/apis/account/interfaces";
 
 interface IProfileAvatarProps {
@@ -14,7 +15,7 @@ const ProfileAvatar: React.FC<IProfileAvatarProps> = ({ account_details }) => {
     return (
       <Avatar.Image
         source={{
-          uri: `https://image.tmdb.org/t/p/w185/${account_details.avatar.tmdb.avatar_path}`,
+          uri: `${PROFILE_IMAGE_BASE_URL}/${account_details.avatar.tmdb.avatar_path}`,
         }}
         size={AVATAR_SIZE}
       />

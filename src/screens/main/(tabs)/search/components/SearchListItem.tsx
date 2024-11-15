@@ -37,7 +37,7 @@ const SearchListItem: React.FC<ISearchListItemProps> = (props) => {
   }
 
   return (
-    <Link href={`/main/${media_type}/${id}`}>
+    <Link href={`/main/${media_type}/${id}`} asChild>
       <Card style={{ margin: 8, overflow: "hidden" }}>
         <View style={{ flexDirection: "row", height: 160 }}>
           {!!poster_path ? (

@@ -2,9 +2,11 @@ import { Platform } from "react-native";
 import { DateTime } from "luxon";
 
 export default class Utils {
+  //#region - Miscellaneous
   static sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
+  //#endregion
 
   //#region - Platform
   static isAndroid = () => Platform.OS === "android";
@@ -30,4 +32,17 @@ export default class Utils {
     return DateTime.fromISO(dateString).toFormat("MMM d, yyyy");
   };
   //#endregion
+
+  static formatMinutesToHours = (minutes: number): string => {
+    if (minutes < 0) throw new Error("Minutes cannot be negative.");
+
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+
+    const hoursPart = hours > 0 ? `${hours}h` : "";
+    const minutesPart = remainingMinutes > 0 ? `${remainingMinutes}m` : "";
+
+    // Add a space if both hours and minutes exist
+    return [hoursPart, minutesPart].filter(Boolean).join(" ");
+  };
 }
