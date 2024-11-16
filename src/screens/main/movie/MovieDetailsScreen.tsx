@@ -13,6 +13,7 @@ import Images from "./components/Images";
 import MoviesList from "./components/MoviesList";
 import { Stack } from "expo-router";
 import Keywords from "./components/Keywords";
+import Crew from "./components/Crew";
 
 const MovieDetailsScreen = () => {
   const {
@@ -48,6 +49,7 @@ const MovieDetailsScreen = () => {
             <MoviesList movies={recommendations} title="Recommendations" />
           )}
           {!!keywords && <Keywords keywords_data={keywords} />}
+          {!!credits && <Crew crew={credits?.crew} />}
           {!!similarMovies && (
             <MoviesList movies={similarMovies} title="Similar Movies" />
           )}
