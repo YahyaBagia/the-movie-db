@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { TimeFrame } from "@/src/apis/trending/interfaces";
+import { TimeFrame } from "@/src/apis/interfaces";
 
 import useTrendingMediaController from "./TrendingMediaController";
 
