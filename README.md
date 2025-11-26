@@ -44,19 +44,19 @@ A modern, feature-rich movie discovery application built with React Native and E
     <tbody>
       <tr>
         <td align="center">
-          <img src="screenshots/dashboard.png" width="200" height="400" alt="Dashboard" />
+          <img src="screenshots/dashboard.png" alt="Dashboard" style="width: 200px; height: 400px; max-width: 200px; max-height: 400px; object-fit: contain; display: block; margin: 0 auto;" />
         </td>
         <td align="center">
-          <img src="screenshots/movie-details.png" width="200" height="400" alt="Movie Details" />
+          <img src="screenshots/movie-details.png" alt="Movie Details" style="width: 200px; height: 400px; max-width: 200px; max-height: 400px; object-fit: contain; display: block; margin: 0 auto;" />
         </td>
         <td align="center">
-          <img src="screenshots/cast-posters.png" width="200" height="400" alt="Cast & Posters" />
+          <img src="screenshots/cast-posters.png" alt="Cast & Posters" style="width: 200px; height: 400px; max-width: 200px; max-height: 400px; object-fit: contain; display: block; margin: 0 auto;" />
         </td>
         <td align="center">
-          <img src="screenshots/watchlist.png" width="200" height="400" alt="Watchlist" />
+          <img src="screenshots/watchlist.png" alt="Watchlist" style="width: 200px; height: 400px; max-width: 200px; max-height: 400px; object-fit: contain; display: block; margin: 0 auto;" />
         </td>
         <td align="center">
-          <img src="screenshots/profile.png" width="200" height="400" alt="Profile" />
+          <img src="screenshots/profile.png" alt="Profile" style="width: 200px; height: 400px; max-width: 200px; max-height: 400px; object-fit: contain; display: block; margin: 0 auto;" />
         </td>
       </tr>
       <tr>
