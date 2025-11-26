@@ -31,12 +31,43 @@ A modern, feature-rich movie discovery application built with React Native and E
 ## 📸 Screenshots
 
 <div align="center">
-
-| Dashboard | Movie Details | Cast & Posters | Watchlist | Profile |
-|:---------:|:-------------:|:--------------:|:---------:|:-------:|
-| <img src="screenshots/dashboard.png" width="200" height="400" style="object-fit: contain;" alt="Dashboard" /> | <img src="screenshots/movie-details.png" width="200" height="400" style="object-fit: contain;" alt="Movie Details" /> | <img src="screenshots/cast-posters.png" width="200" height="400" style="object-fit: contain;" alt="Cast & Posters" /> | <img src="screenshots/watchlist.png" width="200" height="400" style="object-fit: contain;" alt="Watchlist" /> | <img src="screenshots/profile.png" width="200" height="400" style="object-fit: contain;" alt="Profile" /> |
-| Browse trending movies and TV shows | View comprehensive movie information | Explore cast members and posters | Manage your saved movies | User account management |
-
+  <table>
+    <thead>
+      <tr>
+        <th align="center">Dashboard</th>
+        <th align="center">Movie Details</th>
+        <th align="center">Cast & Posters</th>
+        <th align="center">Watchlist</th>
+        <th align="center">Profile</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td align="center">
+          <img src="screenshots/dashboard.png" width="200" height="400" alt="Dashboard" />
+        </td>
+        <td align="center">
+          <img src="screenshots/movie-details.png" width="200" height="400" alt="Movie Details" />
+        </td>
+        <td align="center">
+          <img src="screenshots/cast-posters.png" width="200" height="400" alt="Cast & Posters" />
+        </td>
+        <td align="center">
+          <img src="screenshots/watchlist.png" width="200" height="400" alt="Watchlist" />
+        </td>
+        <td align="center">
+          <img src="screenshots/profile.png" width="200" height="400" alt="Profile" />
+        </td>
+      </tr>
+      <tr>
+        <td align="center">Browse trending movies and TV shows</td>
+        <td align="center">View comprehensive movie information</td>
+        <td align="center">Explore cast members and posters</td>
+        <td align="center">Manage your saved movies</td>
+        <td align="center">User account management</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 ---
