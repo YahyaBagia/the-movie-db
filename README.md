@@ -38,7 +38,6 @@ A modern, feature-rich movie discovery application built with React Native and E
         <th align="center">Movie Details</th>
         <th align="center">Cast & Posters</th>
         <th align="center">Watchlist</th>
-        <th align="center">Profile</th>
       </tr>
     </thead>
     <tbody>
@@ -55,16 +54,12 @@ A modern, feature-rich movie discovery application built with React Native and E
         <td align="center">
           <img src="screenshots/watchlist.png" alt="Watchlist" style="width: 200px; height: 400px; max-width: 200px; max-height: 400px; object-fit: contain; display: block; margin: 0 auto;" />
         </td>
-        <td align="center">
-          <img src="screenshots/profile.png" alt="Profile" style="width: 200px; height: 400px; max-width: 200px; max-height: 400px; object-fit: contain; display: block; margin: 0 auto;" />
-        </td>
       </tr>
       <tr>
         <td align="center">Browse trending movies and TV shows</td>
         <td align="center">View comprehensive movie information</td>
         <td align="center">Explore cast members and posters</td>
         <td align="center">Manage your saved movies</td>
-        <td align="center">User account management</td>
       </tr>
     </tbody>
   </table>
