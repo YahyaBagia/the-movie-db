@@ -1,89 +1,109 @@
-# **Movie App Solution**
+# 🎬 The Movie DB App
 
-This repository contains the source code for a **Movie App** built using modern technologies, tools, and best practices. The app is designed to provide an excellent user experience for exploring movies, fetching reviews, managing watchlists, and submitting ratings.
+<div align="center">
 
----
+A modern, feature-rich movie discovery application built with React Native and Expo. Explore millions of movies and TV shows, manage your watchlist, and stay updated with the latest trending content.
 
-## **Features**
+**[Features](#-features) • [Screenshots](#-screenshots) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started) • [Configuration](#-configuration)**
 
-- **Trending Movies Dashboard**: Displays the latest trending movies.
-- **Movie Details**: Includes movie descriptions, trailers, and reviews.
-- **Watchlist Management**: Add or remove movies from a personal watchlist.
-- **User Ratings**: Submit and view ratings for movies.
-- **Responsive Design**: Fully functional on web, Android, and iOS platforms.
+</div>
 
 ---
 
-## **Technologies**
+## ✨ Features
 
-This project leverages the following technologies to provide a seamless and high-performance user experience:
+### 🎯 Core Functionality
+- **🔥 Trending Dashboard** - Discover the latest trending movies and TV shows
+- **🔍 Advanced Search** - Find any movie or show with powerful search capabilities
+- **📝 Detailed Information** - View comprehensive movie details, cast, posters, and reviews
+- **⭐ User Ratings** - See user scores and community ratings at a glance
+- **📚 Watchlist Management** - Save movies to your personal watchlist for later viewing
+- **👤 User Profile** - Manage your account and preferences
 
-- [Expo](https://expo.dev/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-
----
-
-## **Packages**
-
-Key packages used in the project include:
-
-- [Expo Router](https://expo.github.io/router/docs) - Declarative navigation for React Native apps.
-- [React Native Paper](https://callstack.github.io/react-native-paper/) - Material Design components for building polished UI.
-- [Axios](https://axios-http.com/) - HTTP client for making API requests.
-- [Redux Toolkit](https://redux-toolkit.js.org/) + [Redux Persist](https://github.com/rt2zz/redux-persist) - For global state management with persistence.
-- [Luxon](https://moment.github.io/luxon/#/) - A powerful library for managing and formatting dates.
+### 🎨 User Experience
+- **📱 Cross-Platform** - Seamlessly runs on iOS, Android, and Web
+- **🌙 Dark Mode UI** - Beautiful, modern dark theme interface
+- **⚡ Fast & Responsive** - Optimized performance with smooth animations
+- **💾 Offline Persistence** - Your watchlist and preferences are saved locally
 
 ---
 
-## **Concepts**
+## 📸 Screenshots
 
-This app implements the following advanced concepts:
+<div align="center">
 
-1. **Global State with Persistence**:  
-   State management is handled with Redux Toolkit, ensuring the global state persists across app sessions using Redux Persist.
+| Dashboard | Movie Details | Cast & Posters | Watchlist | Profile |
+|:---------:|:-------------:|:--------------:|:---------:|:-------:|
+| <img src="screenshots/dashboard.png" width="200" height="400" style="object-fit: contain;" alt="Dashboard" /> | <img src="screenshots/movie-details.png" width="200" height="400" style="object-fit: contain;" alt="Movie Details" /> | <img src="screenshots/cast-posters.png" width="200" height="400" style="object-fit: contain;" alt="Cast & Posters" /> | <img src="screenshots/watchlist.png" width="200" height="400" style="object-fit: contain;" alt="Watchlist" /> | <img src="screenshots/profile.png" width="200" height="400" style="object-fit: contain;" alt="Profile" /> |
+| Browse trending movies and TV shows | View comprehensive movie information | Explore cast members and posters | Manage your saved movies | User account management |
 
-2. **Custom Hooks**:  
-   Modular, reusable logic encapsulated into custom hooks for functionalities like fetching data and managing user interactions.
-
-3. **Web Platform Support**:  
-   Full support for the web platform using [Expo's Web Compatibility](https://docs.expo.dev/workflow/web/).
+</div>
 
 ---
 
-## **Installation**
+## 🛠️ Tech Stack
 
-To get started with the app, follow these steps:
+### Core Technologies
+- **[Expo](https://expo.dev/)** - Universal React Native framework
+- **[React Native](https://reactnative.dev/)** - Cross-platform mobile development
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
 
-1. Clone the repository:
+### Key Libraries & Tools
 
+| Package | Purpose |
+|---------|---------|
+| **[Expo Router](https://expo.github.io/router/docs)** | File-based navigation system |
+| **[React Native Paper](https://callstack.github.io/react-native-paper/)** | Material Design UI components |
+| **[Redux Toolkit](https://redux-toolkit.js.org/)** | State management solution |
+| **[Redux Persist](https://github.com/rt2zz/redux-persist)** | Persistent state storage |
+| **[Axios](https://axios-http.com/)** | HTTP client for API requests |
+| **[Luxon](https://moment.github.io/luxon/)** | Modern date/time handling |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+- Expo CLI (optional, but recommended)
+
+### Installation
+
+1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone https://github.com/yahyabagia/the-movie-db.git
+   cd the-movie-db
    ```
 
-2. Install dependencies:
-
+2. **Install dependencies**
    ```bash
-   yarn || npm install
+   yarn install
+   # or
+   npm install
    ```
 
-3. Start the app:
+3. **Configure environment variables** (see [Configuration](#-configuration) below)
 
+4. **Start the development server**
    ```bash
    yarn start
+   # or
+   npm start
    ```
 
-4. Launch the app on your device or emulator.
-   - iOS: Press i in the terminal.
-   - Android: Press a in the terminal
-   - Press w in the terminal
+5. **Launch on your preferred platform**
+   - **iOS**: Press `i` in the terminal (requires macOS)
+   - **Android**: Press `a` in the terminal (requires Android Studio/emulator)
+   - **Web**: Press `w` in the terminal
 
 ---
 
-## **Usage**
+## ⚙️ Configuration
 
-Create a .env file in the root directory with the following variables:
+### Environment Setup
+
+Create a `.env` file in the root directory with your TMDB API credentials:
 
 ```bash
 EXPO_PUBLIC_TMDB_API_BASE_URL=https://api.themoviedb.org/3
@@ -91,12 +111,84 @@ EXPO_PUBLIC_TMDB_API_KEY=<YOUR_API_KEY>
 EXPO_PUBLIC_TMDB_API_TOKEN=<YOUR_API_TOKEN>
 ```
 
-The app will use the values from the .env file to make API requests. Make sure to replace `<YOUR_API_KEY>` and `<YOUR_API_TOKEN>` with your actual values.
+> [!IMPORTANT]
+> You need to obtain API credentials from [The Movie Database (TMDB)](https://www.themoviedb.org/settings/api) to use this app.
+
+### Getting TMDB API Credentials
+
+1. Create a free account at [TMDB](https://www.themoviedb.org/signup)
+2. Navigate to **Settings** → **API**
+3. Request an API key
+4. Copy your API Key and API Read Access Token
+5. Paste them into your `.env` file
 
 ---
 
-## **Key Features in Action**
+## 🏗️ Architecture & Concepts
 
-1. Watchlist Management: Utilize Redux and Axios to handle paginated watchlist data. Users can add, view, and remove movies from their watchlists seamlessly.
-2. Ratings Integration: Submit and fetch user ratings for movies with interactive UI components.
-3. Date Formatting with Luxon: Luxon ensures robust date formatting, such as displaying review dates in a user-friendly format (MMMM d, yyyy).
+### State Management
+The app uses **Redux Toolkit** for centralized state management with **Redux Persist** to maintain state across app sessions. This ensures your watchlist and user preferences are preserved even after closing the app.
+
+### Custom Hooks
+Modular, reusable logic is encapsulated in custom hooks for:
+- Fetching movie data
+- Managing watchlist operations
+- Handling user interactions
+- API request management
+
+### Cross-Platform Support
+Built with Expo's web compatibility, the app provides a consistent experience across mobile and web platforms without code duplication.
+
+### Type Safety
+TypeScript is used throughout the project to catch errors early and provide better developer experience with autocomplete and type checking.
+
+---
+
+## 📦 Project Structure
+
+```
+the-movie-db/
+├── app/                    # Expo Router pages
+├── components/             # Reusable UI components
+├── hooks/                  # Custom React hooks
+├── store/                  # Redux store configuration
+├── services/               # API services and utilities
+├── types/                  # TypeScript type definitions
+└── .env                    # Environment variables (create this)
+```
+
+---
+
+## 🎯 Key Features in Detail
+
+### Watchlist Management
+Utilize Redux and Axios to handle paginated watchlist data. Users can seamlessly add, view, and remove movies from their personal watchlist with real-time updates.
+
+### Ratings Integration
+Display user ratings with interactive UI components featuring circular progress indicators showing community scores at a glance.
+
+### Date Formatting
+Luxon ensures robust and user-friendly date formatting throughout the app (e.g., "Nov 26, 2025 • 1h 47m").
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 👨‍💻 Author
+
+**Yahya Bagia**
+- GitHub: [@yahyabagia](https://github.com/yahyabagia)
+
+---
+
+<div align="center">
+
+**Built with ❤️ using React Native and Expo**
+
+⭐ Star this repo if you find it helpful!
+
+</div>
